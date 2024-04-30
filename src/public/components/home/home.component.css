@@ -1,0 +1,21 @@
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url('https://www.panoramaaudiovisual.com/wp-content/uploads/2011/08/christie_HP_DSC3913_web.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+}
+
+.container h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.container p {
+  font-size: 24px;
+}

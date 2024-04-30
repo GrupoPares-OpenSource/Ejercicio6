@@ -1,0 +1,61 @@
+<form (submit)="onSubmit()" #peliculaForm='ngForm'>
+  <mat-form-field>
+    <input matInput placeholder="Id" name="Id" required [(ngModel)]="peliculaData.id">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Nombre" name="Name" required [(ngModel)]="peliculaData.name">
+  </mat-form-field>
+  <mat-form-field>
+    <input type="text" matInput placeholder="Foto" name="Foto" required [(ngModel)]="peliculaData.photo">
+  </mat-form-field>
+  <mat-form-field>
+    <input type="text" matInput placeholder="Duracion" name="Duracion" required [(ngModel)]="peliculaData.duration">
+  </mat-form-field>
+  <mat-form-field>
+    <input type="text" matInput placeholder="Genero" name="Genero" required [(ngModel)]="peliculaData.genre">
+  </mat-form-field>
+
+  @if(isEditMode){
+  <button mat-button color="primary">Update</button>
+  <button mat-button color="warn" (click)="cancelEdit()">Cancel</button>
+  } @else {
+  <button mat-button color="primary">Add</button>
+  }
+
+</form>
+
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> Id </th>
+    <td mat-cell *matCellDef="let element">{{element.id}}</td>
+  </ng-container>
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+    <td mat-cell *matCellDef="let element">{{element.name}}</td>
+  </ng-container>
+  <ng-container matColumnDef="photo">
+    <th mat-header-cell *matHeaderCellDef> Photo </th>
+    <td mat-cell *matCellDef="let element"><img style="width: 100px;"src="{{element.photo}}"></td>
+  </ng-container>
+  <ng-container matColumnDef="duration">
+    <th mat-header-cell *matHeaderCellDef> Duration </th>
+    <td mat-cell *matCellDef="let element">{{element.duration}}</td>
+  </ng-container>
+  <ng-container matColumnDef="genre">
+    <th mat-header-cell *matHeaderCellDef> Genre </th>
+    <td mat-cell *matCellDef="let element">{{element.genre}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Actions</th>
+    <td mat-cell *matCellDef="let element">
+      <a mat-raised-button color="accent" (click)="editItem(element)"><mat-icon>edit</mat-icon></a>
+      <a mat-raised-button color="warn" (click)="deleteItem(element.id)"><mat-icon>delete</mat-icon></a>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
